@@ -31,3 +31,11 @@ THEN the password is either displayed in an alert or written to the page
 ```
 
 ## Mock-Up
+
+The following link shows a live version of the web application:
+
+[Random Password Generator](https://yockaflocka.github.io/js-password-generator/)
+
+The following is a screenshot of the web application:
+
+[Screenshot](./images/rpg.JPG)

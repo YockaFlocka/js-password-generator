@@ -50,7 +50,7 @@ function elseIf (yesCharacter, yesLowercase, yesUppercase, yesNumber) {
 
 // If user selects 4 negative options
 if (!yesUppercase && !yesLowercase && !yesNumber && !yesCharacter) {
-  final = alert("You must choose a criteria!");
+  final = alert("You must choose a valid number!");
   generatePassword();
 } 
 // Else if for 4 positive options
@@ -137,16 +137,18 @@ else if (yesCharacter) {
 var finalPassword;
 var passwordText;
 
-// inputs the password into the text box
+
 function inputPassword(final) {
 
 var userPassword = [];
 
+// generates a random password
 for (var i = 0; i < userInput; i++) {
   var pickFinal = final[Math.floor(Math.random() * final.length)];
   userPassword.push(pickFinal);
 }
 
+// makes the password a string to avoid commas
 finalPassword = userPassword.join("");
 return finalPassword;
 }
