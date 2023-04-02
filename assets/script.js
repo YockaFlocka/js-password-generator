@@ -16,7 +16,7 @@ var specialCharacters = [ "!", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".",
 
 
 var final;
-
+var password2;
 
 // Function to generate password
 function generatePassword() {
@@ -28,7 +28,9 @@ function generatePassword() {
   );
   // if statement to catch unwanted values
   if (!userInput) {
-    alert("Please choose a value between 8 and 128");
+    alert("You must enter a valid value");
+    generatePassword();
+    
   } else if (userInput < 8 || userInput > 128) {
     // makes sure user chooses a number 8-128
     userInput = parseInt(prompt("Please choose a number between 8 and 128"));
@@ -38,26 +40,125 @@ function generatePassword() {
     yesLowercase = confirm("Will this password contain Lowercase letters?");
     yesNumber = confirm("Will this password contain numbers?");
     yesCharacter = confirm("Will this password contain special characters?");
+    password2 = elseIf(yesCharacter, yesLowercase, yesUppercase, yesNumber);
+    return password2;
   };
 }
 
+// function to hold the else if statements
+function elseIf (yesCharacter, yesLowercase, yesUppercase, yesNumber) {
+
 // If user selects 4 negative options
 if (!yesUppercase && !yesLowercase && !yesNumber && !yesCharacter) {
-  final = alert("You must choose values for the password!");
+  final = alert("You must choose a criteria!");
+  generatePassword();
 } 
 // Else if for 4 positive options
 else if (yesUppercase && yesLowercase && yesNumber && yesCharacter) {
-  final = specialCharacters.concat(numbers, lowercase, uppercase);  
+  final = specialCharacters.concat(numbers, lowercase, uppercase);
+  var variable = inputPassword(final);
+  return variable;
 }
+// Else if for 3 positive options
+else if (yesLowercase && yesNumber && yesCharacter) {
+  final = specialCharacters.concat(numbers, lowercase);
+  var variable = inputPassword(final);
+  return variable;
+}
+else if (yesUppercase && yesNumber && yesCharacter) {
+  final = specialCharacters.concat(uppercase, numbers);
+  var variable = inputPassword(final);
+  return variable;
+}
+else if (yesLowercase && yesUppercase && yesCharacter) {
+  final = specialCharacters.concat(lowercase, uppercase);
+  var variable = inputPassword(final);
+  return variable;
+}
+else if (yesLowercase && yesUppercase && yesNumber) {
+  final = numbers.concat(uppercase, lowercase);
+  var variable = inputPassword(final);
+  return variable;
+}
+// Else if for 2 positive options
+else if (yesUppercase && yesLowercase) {
+  final = uppercase.concat(lowercase);
+  var variable = inputPassword(final);
+  return variable;
+}
+else if (yesUppercase && yesNumber) {
+  final = uppercase.concat(numbers);
+  var variable = inputPassword(final);
+  return variable;
+}
+else if (yesUppercase && yesCharacter) {
+  final = uppercase.concat(specialCharacters);
+  var variable = inputPassword(final);
+  return variable;
+}
+else if (yesLowercase && yesNumber) {
+  final = lowercase.concat(numbers);
+  var variable = inputPassword(final);
+  return variable;
+}
+else if (yesLowercase && yesCharacter) {
+  final = lowercase.concat(specialCharacters);
+  var variable = inputPassword(final);
+  return variable;
+}
+else if (yesNumber && yesCharacter) {
+  final = numbers.concat(specialCharacters);
+  var variable = inputPassword(final);
+  return variable;
+}
+// Else if for 1 positive option
+else if (yesUppercase) {
+  final = uppercase;
+  var variable = inputPassword(final);
+  return variable;
+}
+else if (yesLowercase) {
+  final = lowercase;
+  var variable = inputPassword(final);
+  return variable;
+}
+else if (yesNumber) {
+  final = numbers;
+  var variable = inputPassword(final);
+  return variable;
+}
+else if (yesCharacter) {
+  final = specialCharacters;
+  var variable = inputPassword(final);
+  return variable;
+}
+}
+
+var finalPassword;
+var passwordText;
+
+// inputs the password into the text box
+function inputPassword(final) {
+
+var userPassword = [];
+
+for (var i = 0; i < userInput; i++) {
+  var pickFinal = final[Math.floor(Math.random() * final.length)];
+  userPassword.push(pickFinal);
+}
+
+finalPassword = userPassword.join("");
+return finalPassword;
+}
+
 
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
+  generatePassword();
+  passwordText = document.querySelector("#password");
+  passwordText.value = finalPassword;
 }
 
 // Add event listener to generate button

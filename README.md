@@ -1,6 +1,6 @@
 # JavaScript: Password Generator
 
-Modify starter code to create an application that enables employees to generate random passwords based on criteria that they’ve selected.
+Modify starter code to create an application that enables users to generate random passwords based on criteria that they’ve selected.
 
 ## User Story
 
